@@ -57,4 +57,35 @@ public class Post {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public static class PostBuilder {
+        private Post post;
+
+        public PostBuilder() {
+            post = new Post();
+        }
+        public PostBuilder setTitle(String title) {
+            post.setTitle(title);
+            return this;
+        }
+
+        public PostBuilder setAuthor(String author) {
+            post.setAuthor(author);
+            return this;
+        }
+
+        public PostBuilder setContent(String content) {
+            post.setContent(content);
+            return this;
+        }
+
+        public PostBuilder setViews(int views) {
+            post.setViews(views);
+            return this;
+        }
+
+        public Post build() {
+            return post;
+        }
+    }
 }
