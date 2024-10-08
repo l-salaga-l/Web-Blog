@@ -77,4 +77,80 @@ public class BlogController {
         postRepository.save(post);
         return "redirect:/blog";
     }
+
+    @PostMapping("/blog/{id}/remove")
+    public String removePost(@PathVariable(value = "id") long id, Model model) {
+        Post post = postRepository.findById(id).orElseThrow();
+        postRepository.delete(post);
+        return "redirect:/blog";
+    }
+//    private final PostRepository postRepository;
+//
+//    @Autowired
+//    public BlogController(PostRepository postRepository) {
+//        this.postRepository = postRepository;
+//    }
+//
+//    @GetMapping("/blog")
+//    public String blog(Model model) {
+//        Iterable<Post> posts = postRepository.findAll();
+//        model.addAttribute("posts", posts);
+//        return "blog-main";
+//    }
+//
+//    @GetMapping("/blog/add")
+//    public String addPost(Model model) {
+//        return "blog-add";
+//    }
+//
+//    @PostMapping("/blog/add")
+//    public String createPost(@RequestParam String title,
+//                             @RequestParam String author,
+//                             @RequestParam String content) {
+//        Post post = new Post.PostBuilder()
+//                .setTitle(title)
+//                .setAuthor(author)
+//                .setContent(content)
+//                .build();
+//        postRepository.save(post);
+//        return "redirect:/blog";
+//    }
+//
+//    @GetMapping("/blog/{id}")
+//    public String detailsPost(@PathVariable(value = "id") long id, Model model) {
+//        return getPost(id, model, "blog-details");
+//    }
+//
+//    @GetMapping("/blog/{id}/edit")
+//    public String editPost(@PathVariable(value = "id") long id, Model model) {
+//        return getPost(id, model, "blog-edit");
+//    }
+//
+//    @PostMapping("/blog/{id}/edit")
+//    public String updatePost(@PathVariable(value = "id") long id,
+//                             @RequestParam String title,
+//                             @RequestParam String author,
+//                             @RequestParam String content) {
+//        Post post = postRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+//        post.setTitle(title);
+//        post.setAuthor(author);
+//        post.setContent(content);
+//        postRepository.save(post);
+//        return "redirect:/blog";
+//    }
+//
+//    @PostMapping("/blog/{id}/remove")
+//    public String removePost(@PathVariable(value = "id") long id) {
+//        postRepository.findById(id).ifPresent(postRepository::delete);
+//        return "redirect:/blog";
+//    }
+//
+//    private String getPost(long id, Model model, String viewName) {
+//        Post post = postRepository.findById(id).orElse(null);
+//        if (post == null) {
+//            return "redirect:/blog";
+//        }
+//        model.addAttribute("post", post);
+//        return viewName;
+//    }
 }
