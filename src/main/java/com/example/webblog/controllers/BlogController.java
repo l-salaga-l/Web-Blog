@@ -67,4 +67,14 @@ public class BlogController {
         model.addAttribute("post", result);
         return "blog-edit";
     }
+
+    @PostMapping("/blog/{id}/edit")
+    public String updatePost(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String author, @RequestParam String content, Model model) {
+        Post post = postRepository.findById(id).orElseThrow();
+        post.setTitle(title);
+        post.setAuthor(author);
+        post.setContent(content);
+        postRepository.save(post);
+        return "redirect:/blog";
+    }
 }
