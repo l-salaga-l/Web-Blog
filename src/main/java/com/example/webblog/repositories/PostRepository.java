@@ -1,7 +1,7 @@
 package com.example.webblog.repositories;
 
 import com.example.webblog.model.Post;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PostRepository extends CrudRepository<Post, Long> {
+public interface PostRepository extends JpaRepository<Post, Long> {
 }

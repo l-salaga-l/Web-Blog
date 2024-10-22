@@ -14,6 +14,7 @@ public class Post {
 
     private String author;
 
+    @Column(name = "content", columnDefinition = "TEXT", length = 100000)
     private String content;
 
     private int views;
